@@ -1,0 +1,53 @@
+{% extends "Board/index.html" %}
+
+{% block board %}
+
+
+<div ng-controller="feedCtrl" ng-init="feed('{{access_token}}')" class="page">
+<table class="table" ng-controller="printCtrl">
+	<tr ng-controller="addIssue">
+		<td ng-repeat="step in steps">
+			<div class="cell">
+				{[{step}]} - <a ng-click="show=true">add</a>
+				<form novalidate ng-show="show" class="addform">
+					Title: <input type="text" ng-model="title" required /><br />
+					<textarea class="form-control" rows="3" ng-model="body"></textarea>
+					<button ng-click="newIssue(title, body, step, '{{access_token}}'); show=false">ADD</button>
+					<button ng-click="show=false">Cancel</button>
+				</form>
+			</div>
+		</td>
+	</tr>
+	<tr ng-controller="dragDropCtrl">
+		<td ui-on-Drop="onDrop($event,$data,story,'Story')">
+			<div ui-draggable="true" drag="issue" on-drop-success="dropSuccessHandler($event,$index,story)" ng-repeat="issue in story" class="img-rounded">
+				<cloud></cloud>
+			</div>
+		</td>
+		<td ui-on-Drop="onDrop($event,$data,todo, 'To do')">
+			<div ui-draggable="true" drag="issue" on-drop-success="dropSuccessHandler($event,$index,todo)" ng-repeat="issue in todo" class="img-rounded">
+				<cloud></cloud>
+			</div>
+		</td>
+		<td ui-on-Drop="onDrop($event,$data,inpro, 'In progress')">
+			<div ui-draggable="true" drag="issue" on-drop-success="dropSuccessHandler($event,$index,inpro)" ng-repeat="issue in inpro" class="img-rounded">
+				<cloud></cloud>
+			</div>
+		</td>
+		<td ui-on-Drop="onDrop($event,$data,tover, 'To verify')">
+			<div ui-draggable="true" drag="issue" on-drop-success="dropSuccessHandler($event,$index,tover)" ng-repeat="issue in tover" class="img-rounded">
+				<cloud></cloud>
+			</div>
+		</td>
+		<td ui-on-Drop="onDrop($event,$data,done, 'Done')">
+			<div ui-draggable="true" drag="issue" on-drop-success="dropSuccessHandler($event,$index,done)" ng-repeat="issue in done" class="img-rounded">
+				<cloud></cloud>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+
+
+
+{% endblock %}

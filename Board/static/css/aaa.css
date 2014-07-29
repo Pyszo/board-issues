@@ -1,0 +1,23 @@
+.page{
+	width: 1300px;
+}
+
+.img-rounded{
+	position: relative;
+	width: 250px;
+	height: 150px;
+	background-color: yellow;
+}
+
+.cell{
+	width: 250px;
+}
+
+.addform{
+	position: fixed;
+	left: 10px;
+	top: 50px;
+	width: 400px;
+	z-index: 1000;
+	background-color: white;
+}

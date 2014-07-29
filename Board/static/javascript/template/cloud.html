@@ -1,0 +1,35 @@
+<div style="margin: 5px">
+	<h4 ng-hide="show">
+		{[{issue.title}]} - <a ng-click="show=true">Edit</a>
+	</h4>
+	<h4 ng-show="show">
+		<form novalidate>
+			<input type="text" ng-model="edit.title" required /><br />
+			<button ng-click="editIssue(edit, issue.number); show=false; issue.title=edit.title">ADD</button>
+			<button ng-click="show=false">Cancel</button>
+		</form>
+	</h4>
+
+	<h4 ng-hide="show2"><small>{[{issue.body}]} - <a ng-click="show2=true">Edit</a></small></h4>
+	<h4 ng-show="show2">
+		<form novalidate>
+			<textarea class="form-control" rows="3" ng-model="edit.body"></textarea>
+			<button ng-click="editIssue(edit, issue.number); show2=false; issue.body=edit.body">ADD</button>
+			<button ng-click="show2=false">Cancel</button>
+		</form>
+	</h4>
+
+	<h4 style="position: absolute; bottom: 0; left: 5;"><small>by {[{issue.user.login}]}, Assignee: {[{issue.assignee.login}]}</small></h4>
+	<small style="position: absolute; bottom: 5; left: 5;">
+		<form ng-controller="labelsCtrl as ctrl" ng-init="ctrl.ifLabel(issue)" novalidate>Labels:
+			<input type="checkbox" ng-model="ctrl.js">js</input>
+			<input type="checkbox" ng-model="ctrl.pt">python</input>
+			<input type="checkbox" ng-model="ctrl.css">css</input>
+			<input type="checkbox" ng-model="ctrl.iv">invalid</input>
+			<input type="checkbox" ng-model="ctrl.hw">help</input>
+			<input type="checkbox" ng-model="ctrl.bug">bug</input>
+			<button ng-click="ctrl.sendLabels(issue)">Send</button>
+		</form>
+	</small>
+</div>
+

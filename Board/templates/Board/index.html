@@ -1,0 +1,27 @@
+<html ng-app="board">
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL }}lib/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/aaa.css" />
+		<script type="text/javascript" src="{{ STATIC_URL }}lib/angular.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}lib/draganddrop.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}javascript/aaa.js"></script>
+	</head>
+	<body>
+	{% if access_token %}
+
+	{% block board %}
+	{% endblock %}
+
+	{% else %}
+		<p>
+			Well, hello there!
+		</p>
+		<p>
+			<a href="https://github.com/login/oauth/authorize?scope=public_repo&client_id={{ client_id }}">Click here</a> to begin!</a>
+		</p>
+		<p>
+			If that link doesn't work, remember to provide your own Client ID!
+		</p>
+	{% endif %}
+	</body>
+</html>
